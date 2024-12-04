@@ -274,14 +274,15 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-      color: const Color(0xFF404247),
+      color: const Color(0xFF222831),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(21.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(author,
-                style: TextStyle(color: Colors.grey[400], fontSize: 12)),
+                style: TextStyle(
+                    color: Colors.white.withOpacity(1), fontSize: 12)),
             const SizedBox(height: 8),
             Text(title,
                 style: const TextStyle(

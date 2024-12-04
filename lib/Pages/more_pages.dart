@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Pages/multi_transfer.dart';
 
 // ignore: use_key_in_widget_constructors
 class MorePages extends StatelessWidget {
@@ -72,7 +73,6 @@ class MorePages extends StatelessWidget {
             _buildSectionTitle('Earn'),
             const SizedBox(height: 10),
             _buildIconGrid([
-              {'icon': 'lib/Material_More/gift_more.png', 'label': 'Gift'},
               {
                 'icon': 'lib/Material_More/history_more.png',
                 'label': 'History'
@@ -123,34 +123,46 @@ class MorePages extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (context, index) {
         final item = items[index];
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            item['icon'] is String
-                ? Image.asset(
-                    item['icon'],
-                    width: 40,
-                    height: 40,
-                    errorBuilder: (context, error, stackTrace) {
-                      return const Icon(
-                        Icons.broken_image,
-                        color: Colors.white,
-                        size: 40,
-                      );
-                    },
-                  )
-                : Icon(
-                    item['icon'],
-                    color: Colors.white,
-                    size: 40,
-                  ),
-            const SizedBox(height: 8),
-            Text(
-              item['label'],
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white, fontSize: 12),
-            ),
-          ],
+        return GestureDetector(
+          onTap: () {
+            if (item['label'] == 'Multy Payment') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const multitfapp()), // Assuming MultiTransferPage is the target page
+              );
+            }
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              item['icon'] is String
+                  ? Image.asset(
+                      item['icon'],
+                      width: 40,
+                      height: 40,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.broken_image,
+                          color: Colors.white,
+                          size: 40,
+                        );
+                      },
+                    )
+                  : Icon(
+                      item['icon'],
+                      color: Colors.white,
+                      size: 40,
+                    ),
+              const SizedBox(height: 8),
+              Text(
+                item['label'],
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.white, fontSize: 12),
+              ),
+            ],
+          ),
         );
       },
     );

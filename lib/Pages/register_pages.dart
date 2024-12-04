@@ -77,7 +77,6 @@ class _RegisterPagesState extends State<RegisterPages> {
                 const SizedBox(height: 24),
                 // Password TextField
                 TextField(
-                  obscureText: _isObscure, // Toggle between hide and unhide
                   style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -121,7 +120,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                   children: [
                     Expanded(
                       child: TextField(
-                        obscureText: true,
+                        obscureText: false,
                         style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           labelText: 'Authentication',
