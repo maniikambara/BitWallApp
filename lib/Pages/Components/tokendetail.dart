@@ -28,6 +28,7 @@ class TokenDetails extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF222831),
         elevation: 0,
+        toolbarHeight: 80,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
           onPressed: () => Navigator.pop(context),
