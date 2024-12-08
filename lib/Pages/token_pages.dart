@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Pages/Components/filtertoken.dart';
 import 'package:flutter_application_1/Pages/Components/tokendetail.dart';
 import 'package:flutter_application_1/Pages/more_pages.dart';
 
@@ -54,10 +55,15 @@ class _TokenPagesState extends State<TokenPages> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.filter_alt_sharp, color: Colors.white, size: 40),
-                  onPressed: () {
-                    // Aksi untuk filter crypto
-                  },
+                  icon: const Icon(Icons.filter_list, color: Colors.white, size: 40),
+                  onPressed: () => showModalBottomSheet(
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                    ),
+                    backgroundColor: const Color(0xFF222831),
+                    builder: (_) => const TokenFilterSheet(),
+                  ),
                 ),
                 const SizedBox(width: 8),
                 const Text(
@@ -164,7 +170,7 @@ class _TokenPagesState extends State<TokenPages> {
                               style: const TextStyle(color: Colors.white, fontSize: 24),
                             ),
                             Text(
-                              '${isProfit ? '+' : ''}${percent}%', // Tambahkan tanda + jika profit
+                              '${isProfit ? '+' : ''}$percent%', // Tambahkan tanda + jika profit
                               style: TextStyle(
                                 color: isProfit ? Colors.green : Colors.red,
                                 fontSize: 16,
