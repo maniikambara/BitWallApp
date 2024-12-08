@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Pages/Components/tokendetail.dart';
 import 'package:flutter_application_1/Pages/more_pages.dart';
 
 class TokenPages extends StatefulWidget {
@@ -19,7 +22,7 @@ class _TokenPagesState extends State<TokenPages> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF393E46),
         elevation: 0,
-        toolbarHeight: 80, // Tinggi toolbar untuk memberi jarak
+        toolbarHeight: 120, // Tinggi toolbar untuk memberi jarak
         leading: IconButton(
           icon: Image.asset('lib/Material/more.png', width: 40, height: 40),
           onPressed: () => Navigator.push(
@@ -29,8 +32,8 @@ class _TokenPagesState extends State<TokenPages> {
         ),
         centerTitle: true,
         title: Image.asset(
-          'lib/Material/Logo.png',
-          width: 40,
+          'lib/Material/LogoText.png',
+          width: 120,
           height: 40,
         ),
         actions: [
@@ -46,12 +49,12 @@ class _TokenPagesState extends State<TokenPages> {
         children: [
           // Header teks "CRYPTO" dan ikon filter
           Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 10),
+            padding: const EdgeInsets.only(bottom: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.filter_list, color: Colors.white, size: 40),
+                  icon: const Icon(Icons.filter_alt_sharp, color: Colors.white, size: 40),
                   onPressed: () {
                     // Aksi untuk filter crypto
                   },
@@ -68,11 +71,10 @@ class _TokenPagesState extends State<TokenPages> {
               ],
             ),
           ),
-          const Divider(color: Colors.grey),
 
           // Header list token
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
@@ -96,36 +98,82 @@ class _TokenPagesState extends State<TokenPages> {
             ),
           ),
 
+          const Divider(
+            color: Colors.grey,
+            thickness: 2,
+          ),
+          
           // List token dan harga
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.only(bottom: 100), // Batas bawah 100px
-              itemCount: 20, // Jumlah baris dalam daftar
+              itemCount: 10, // Jumlah baris dalam daftar
               itemBuilder: (context, index) {
+                final isProfit = Random().nextBool();
+                final percent = isProfit ? Random().nextInt(10) + 1 : -Random().nextInt(10) - 1;
+                final price = (index + 1) * 10;
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const CircleAvatar(
-                            radius: 40, // Ukuran avatar diperbesar 2x
-                            backgroundColor: Colors.grey,
-                            child: Icon(Icons.currency_bitcoin, color: Colors.white, size: 30),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TokenDetails(
+                            name: 'BTC ${index + 1}',
+                            price: price.toDouble(),
+                            isProfit: isProfit,
+                            bestBid: 0.0,
+                            bestAsk: 0.0,
+                            change: 0.0,
+                            changePercent: 0.0,
                           ),
-                          const SizedBox(width: 20),
-                          Text(
-                            'Token $index',
-                            style: const TextStyle(color: Colors.white, fontSize: 32),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        '\$${(index + 1) * 10}',
-                        style: const TextStyle(color: Colors.white, fontSize: 32),
-                      ),
-                    ],
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            const CircleAvatar(
+                              radius: 30, // Ukuran avatar diperbesar 2x
+                              backgroundColor: Colors.grey,
+                              child: Icon(Icons.currency_bitcoin, color: Colors.white, size: 30),
+                            ),
+                            const SizedBox(width: 20),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'BTC ${index + 1}',
+                                  style: const TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'BitCoin', // Ubah menjadi nama token yang sesuai
+                                  style: const TextStyle(color: Colors.white, fontSize: 20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Rp $price',
+                              style: const TextStyle(color: Colors.white, fontSize: 24),
+                            ),
+                            Text(
+                              '${isProfit ? '+' : ''}${percent}%', // Tambahkan tanda + jika profit
+                              style: TextStyle(
+                                color: isProfit ? Colors.green : Colors.red,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -139,7 +187,7 @@ class _TokenPagesState extends State<TokenPages> {
         children: [
           if (isExtended)
             Container(
-              width: 320,
+              width: 220,
               decoration: BoxDecoration(
                 color: const Color(0xFF222831),
                 borderRadius: BorderRadius.circular(10),
@@ -175,7 +223,7 @@ class _TokenPagesState extends State<TokenPages> {
             backgroundColor: const Color(0xFF222831),
             label: Text(
               'Rentang Waktu: $selectedRange',
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),
         ],
