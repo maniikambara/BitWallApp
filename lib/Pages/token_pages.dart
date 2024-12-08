@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/more_pages.dart';
 
-
 class TokenPages extends StatefulWidget {
   const TokenPages({super.key});
 
@@ -20,8 +19,9 @@ class _TokenPagesState extends State<TokenPages> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF393E46),
         elevation: 0,
+        toolbarHeight: 80, // Tinggi toolbar untuk memberi jarak
         leading: IconButton(
-          icon: Image.asset('lib/Material/more.png', width: 30, height: 30),
+          icon: Image.asset('lib/Material/more.png', width: 40, height: 40),
           onPressed: () => Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => MorePages()),
@@ -29,13 +29,13 @@ class _TokenPagesState extends State<TokenPages> {
         ),
         centerTitle: true,
         title: Image.asset(
-          'lib/Material/Logo.png', // Ganti dengan path logo Anda
+          'lib/Material/Logo.png',
           width: 40,
           height: 40,
         ),
         actions: [
           IconButton(
-            icon: Image.asset('lib/Material/notif.png', width: 30, height: 30),
+            icon: Image.asset('lib/Material/notif.png', width: 40, height: 40),
             onPressed: () {
               // Aksi untuk Notifikasi
             },
@@ -46,12 +46,12 @@ class _TokenPagesState extends State<TokenPages> {
         children: [
           // Header teks "CRYPTO" dan ikon filter
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.only(top: 30, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.filter_list, color: Colors.white),
+                  icon: const Icon(Icons.filter_list, color: Colors.white, size: 40),
                   onPressed: () {
                     // Aksi untuk filter crypto
                   },
@@ -61,7 +61,7 @@ class _TokenPagesState extends State<TokenPages> {
                   'CRYPTO',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 24,
+                    fontSize: 36,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -70,6 +70,32 @@ class _TokenPagesState extends State<TokenPages> {
           ),
           const Divider(color: Colors.grey),
 
+          // Header list token
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Token',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Harga',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
           // List token dan harga
           Expanded(
             child: ListView.builder(
@@ -77,27 +103,27 @@ class _TokenPagesState extends State<TokenPages> {
               itemCount: 20, // Jumlah baris dalam daftar
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [
                           const CircleAvatar(
-                            radius: 20,
+                            radius: 40, // Ukuran avatar diperbesar 2x
                             backgroundColor: Colors.grey,
-                            child: Icon(Icons.currency_bitcoin, color: Colors.white),
+                            child: Icon(Icons.currency_bitcoin, color: Colors.white, size: 30),
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 20),
                           Text(
                             'Token $index',
-                            style: const TextStyle(color: Colors.white, fontSize: 16),
+                            style: const TextStyle(color: Colors.white, fontSize: 32),
                           ),
                         ],
                       ),
                       Text(
                         '\$${(index + 1) * 10}',
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: Colors.white, fontSize: 32),
                       ),
                     ],
                   ),
@@ -105,8 +131,6 @@ class _TokenPagesState extends State<TokenPages> {
               },
             ),
           ),
-
-          // Floating Action Button
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -115,18 +139,22 @@ class _TokenPagesState extends State<TokenPages> {
         children: [
           if (isExtended)
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              width: 320,
               decoration: BoxDecoration(
                 color: const Color(0xFF222831),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ListView(
                 shrinkWrap: true,
-                children: ['1 Hari', '1 Bulan', '1 Tahun'].map((range) {
+                children: const [
+                  '1 Hari',
+                  '1 Bulan',
+                  '1 Tahun',
+                ].map((range) {
                   return ListTile(
                     title: Text(
                       range,
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
                       setState(() {

@@ -1,5 +1,6 @@
 {
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "java.compile.nullAnalysis.mode": "automatic"
 }
