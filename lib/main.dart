@@ -5,6 +5,7 @@ import 'package:flutter_application_1/Pages/more_pages.dart';
 import 'package:flutter_application_1/Pages/register_pages.dart';
 import 'package:flutter_application_1/Pages/home_pages.dart';
 import 'package:flutter_application_1/Pages/multi_transfer.dart';
+import 'package:flutter_application_1/Pages/token_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPages(),
         '/home': (context) => HomePages(),
         '/more': (context) => MorePages(),
-        '/multitransfer': (context) => multitfapp()
+        '/multitransfer': (context) => multitfapp(),
+        '/tokenpage': (context) => TokenPages(),
       },
     );
   }

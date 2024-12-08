@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/multi_transfer.dart';
+import 'package:flutter_application_1/Pages/token_pages.dart';
 
 // ignore: use_key_in_widget_constructors
 class MorePages extends StatelessWidget {
@@ -47,7 +48,9 @@ class MorePages extends StatelessWidget {
             _buildSectionTitle('Market & Transaction'),
             const SizedBox(height: 10),
             _buildIconGrid([
-              {'icon': 'lib/Material_More/buy_more.png', 'label': 'Buy Crypto'},
+              {'icon': 'lib/Material_More/buy_more.png',
+              'label': 'Buy Crypto'
+              },
               {
                 'icon': 'lib/Material_More/launchpool_more.png',
                 'label': 'Launchpool'
@@ -131,6 +134,14 @@ class MorePages extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) =>
                         const multitfapp()), // Assuming MultiTransferPage is the target page
+              );
+            }
+            if (item['label'] == 'Buy Crypto') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const TokenPages()), // Assuming MultiTransferPage is the target page
               );
             }
           },
