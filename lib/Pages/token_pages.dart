@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/Components/filtertoken.dart';
 import 'package:flutter_application_1/Pages/Components/tokendetail.dart';
@@ -116,7 +115,7 @@ class _TokenPagesState extends State<TokenPages> {
               itemBuilder: (context, index) {
                 final isProfit = Random().nextBool();
                 final percent = isProfit ? Random().nextInt(10) + 1 : -Random().nextInt(10) - 1;
-                final price = (index + 1) * 10;
+                final price = (index + 999999) * 9 * 7 * 5 * 3 * 4 * 2;
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   child: GestureDetector(
@@ -167,13 +166,14 @@ class _TokenPagesState extends State<TokenPages> {
                           children: [
                             Text(
                               'Rp $price',
-                              style: const TextStyle(color: Colors.white, fontSize: 24),
+                              style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
                             ),
                             Text(
                               '${isProfit ? '+' : ''}$percent%', // Tambahkan tanda + jika profit
                               style: TextStyle(
                                 color: isProfit ? Colors.green : Colors.red,
                                 fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],

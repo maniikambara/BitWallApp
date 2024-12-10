@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class TokenFilterSheet extends StatelessWidget {
-  const TokenFilterSheet({Key? key}) : super(key: key);
+  const TokenFilterSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class TokenFilterSheet extends StatelessWidget {
 
 class FilterOption extends StatelessWidget {
   final String title;
-  const FilterOption({Key? key, required this.title}) : super(key: key);
+  const FilterOption({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
